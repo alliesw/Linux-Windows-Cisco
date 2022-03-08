@@ -2,7 +2,8 @@
 REM File Name     : performance_metrics.sql
 REM Author        : Alex Shields-Weber
 REM Description		: Displays the Buffer Cache Hit Ratio 
-REM Purpose       : Indicates the percentage of pages found in the buffer cache without having to read from disk
+REM Purpose       : Indicates the percentage of pages found
+-- in the buffer cache without having to read from disk
 -------------------------------------------------------------------------------------------------------------------------------
 
 COLUMN BUFFER_POOL_NAME FORMAT A20
