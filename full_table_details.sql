@@ -2,7 +2,8 @@ REM Filename      : full_table_details.sql
 REM Description   : Full description of your table - all constraints, indexes, comments & more 
 REM Author        : Alex Shields-Weber      
 
--- You can use the sample_table.sql file to test out this procedure 
+-- You can use the sample_table.sql file to test out this procedure. 
+-- Once the table is created, replace 'table_name' with 'test_table' in the code below. 
 
 SET ECHO OFF 
 SET TERM ON
