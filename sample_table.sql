@@ -1,3 +1,4 @@
+REM File Name     : sample_table.sql
 REM Description   : Creates a test table and inserts 1000 rows of data 
 
 -- Use this sample table to test out the full_table_description.sql procedure 
