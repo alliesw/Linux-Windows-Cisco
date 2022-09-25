@@ -1,0 +1,186 @@
+Linux: Create a new folder/directory called "my-super-cool-folder" in current directory using the command line 
+> mkdir my-super-cool-folder
+
+
+event viewer -> windows logs > application 
+> C: -> search tools -> size:gigantic -> delete file
+
+
+(1) Updating software that's out-of-date
+Update VLC 
+$VLC_URL = 
+"https://download.videolan.org/vlc/last/win64/"
+
+(2) Finding and deleting files
+access the 'view' tab from file explorer -> options 
+-> change folder & search options -> select 'search tab' from menu 
+-> from search menu, check "Always search file names and contents" -> OK
+-> now use the search menu to enter search query 
+
+(C:/Users/Documents) ; right click to delete selected file
+
+(3) Modifying file permissions: 
+> ICACLS to grant, deny or remove an ACL; integrity control 
+#change the permissions so that the user "Kara" only has read access to the file.
+
+#view current permissions
+ICACLS C:\Users\Qwiklab\Documents\important_document
+ICACLS C:\Users\Qwiklab\Documents\important_document /remove "Kara" ("Everyone" = group permissions)
+ICACLS C:\Users\Qwiklab\Documents\important_document
+
+#regrant her only read permission 
+ICACLS C:\Users\Qwiklab\Documents\important_document /grant "Kara:(r)"
+ICACLS C:\Users\Qwiklab\Documents\important_document
+
+(4) Finding and terminating specific processes
+Using PowerShell (Admin mode)
+#search for process 
+Get-Process -Name "totally_not_malicious"
+
+#end process & specify the PID
+taskkill /F /PID [PROCESS ID]
+
+#verify that the process is no longer running
+Get-Process -Name "totally_not_malicious"
+
+Terminating multiple processes containing the word "razzle"
+Get-Process -Name "*razzle*"
+taskkill /F /PID [PROCESS ID]
+taskkill /F /PID [PROCESS ID]
+
+Get-Process -Name "*razzle*"
+
+
+-----------LINUX----------------
+view logs: 
+ls /var/log
+view contents: 
+sudo cat /var/log/syslog
+
+(1) Disk space low 
+sudo du -a /home | sort -n -r | head -n 5
+sudo rm /home/lab/storage/ultra_mega_large.txt
+
+(2) find & delete "corrupted_file"
+sudo rm /home/lab/corrupted_file
+
+
+(3) update vcl software (w3)
+sudo apt-get install -f sh
+Y
+dpkg -s vlc 
+
+(4) Finding and terminating "totally_not_malicious"
+ps aux 
+sudo kill id?
+
+(5) Modifying file permissions for "super_secret_file.txt"
+sudo chmod 777 /home/lab/super_secret_file.txt
+
+-----------------------------------------------------
+
+ps -aux | grep "totally_not_malicious"
+sudo kill [PROCESS ID]
+
+(1) remove "corrupted_file"
+cd /home/lab/corrupted_file
+rm corrupted_file 
+
+(2)
+sudo dpkg -i /home/lab/downloads/vcl
+(Y)
+dpkg -s vcl
+
+sudo apt-get update
+sudo apt-get install vlc 
+dpkg -s vcl
+
+(3) cd /home/totally_not_malicious
+ps -aux | lsgrep "totally_not_malicious"
+sudo kill [PROCESS ID]
+sudo kill [PROCESS ID]
+ps -aux | grep "totally_not_malicious"
+
+(4)
+cd /home/lab
+ls -l 
+ls -l super_secret_file.txt
+sudo chmod 777 /home/lab/super_secret_file.txt
+
+Searching in files (grep)
+(1) find files:
+grep -rw /home/labgre -e "corrupted_file" 
+mv /home/lab/[word_1]
+/home/lab/[word_2]
+/home/lab 
+
+sudo dpkg -i /home/lab/downloads/vcl
+(Y)
+dpkg -s vcl
+
+sudo apt install VCL
+Y
+dpkg -s VCL
+
+$ apt-get update
+$ apt-get upgrade 
+$ sudo apt-get install [package-name] 
+
+ps -aux | lsgrep "totally_not_malicious"
+sudo kill [PROCESS ID]
+sudo kill [PROCESS ID]
+ps -aux | grep "totally_not_malicious"
+
+------------------------------------------------------
+
+(1) change to directory containing the file-name 
+cd ../qwiklab/documents
+ls -l [file_name]
+
+change file permissions
+sudo chmod 700 file_name
+ls -l [file_name]
+
+Change Folder Permissions: owner=all group=only write other=none 
+cd ..
+ls -ld [secret_folder]/
+
+(1) Add execute to owner's permission [execute/read/write]
+sudo chmod u+x secret_folder/
+ls -ld secret_folder/
+
+(2) Fix group permission to add write & remove r [write only]
+sudo chmod g+w secret_folder/
+sudo chmod g-r secret_folder/
+ls -ld secret_folder/
+
+(3) remove read permissions from everyone 
+sudo chmod o-r secret_folder/
+ls -ld secret_folder/
+OR 
+sudo chmod 720 secret_folder/
+
+change owner of a file "taco"
+ls -ld taco/
+change root owner to new owner "cook" 
+sudo chown cook /home/qwiklab/taco
+ls -ld taco/
+
+Criteria: owner has all; group has r+w; everyone has r
+cd documents/
+ls -l [not_so_important_document]
+
+#owner 
+sudo chmod u+x not_so_important_document
+ls -l not_so_important_document
+
+#Group - add w 
+sudo chmod g+w not_so_important_document
+ls -l not_so_important_document
+
+#Everyone - r 
+sudo chmod a+r not_so_important_document
+ls -l not_so_important_document
+
+OR 
+sudo chmod 764 not_so_important_document
