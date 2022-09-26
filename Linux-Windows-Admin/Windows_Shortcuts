@@ -1,0 +1,85 @@
+GENERAL USE SHORTCUTS
+Windows+I: Open Windows Settings.
+
+WINDOW SNAPPING SHORTCUTS
+Windows+Left: Snap current window to the left side of the screen.
+Windows+Right: Snap current window the the right side of the screen.
+Windows+Up: Snap current window to the top of the screen.
+Windows+Down: Snap current window to the bottom of the screen.
+
+TASK VIEW AND WINDOW MANAGEMENT SHORTCUTS
+
+Windows+Tab: This opens the new Task View interface
+
+Alt+Tab/Ctrl+Alt+Tab lets you switch between your open Windows.
+
+VIRTUAL DESKTOP SHORTCUTS
+Windows+Ctrl+D: Create a new virtual desktop and switch to it
+Windows+Ctrl+F4: Close the current virtual desktop.
+Windows+Ctrl+Left/Right: Switch to the virtual desktop on the left or right.
+
+
+F1: Recreate the previous command character by character.
+F3: Repeat the previous command
+F7: Show a history of previous commands. You can use the Up/Down arrow keys to select any command and then hit Enter to execute the command.
+Ctrl+C: Abort the current line you’re typing or a command that is currently executing. [no text selected] 
+
+
+Manipulating 
+Ctrl+V: Pastes text at the cursor.
+Ctrl+C: Copies the selected text to the clipboard
+
+SHORTCUTS FOR SELECTING TEXT AT THE COMMAND PROMPT:
+
+> Shift+Left/Right/Up/Down: Moves the cursor left a character, right a character, up a line, or down a line, selecting the text along the way. 
+Continue pressing arrow keys to select more text.
+
+> Ctrl+Shift+Left/Right: Moves the cursor one word to the left or right, selecting that word along the way.
+
+> Shift+Home/End: Moves the cursor to the beginning or end of the current line, selecting text along the way.
+
+> Shift+Page Up/Page Down: Moves the cursor up or down a screen, selecting text.
+
+> Ctrl+Shift+Home/End: Moves the cursor to the beginning or end of the “screen buffer,” selecting all text between the cursor and the beginning 
+or end of the Command Prompt’s output.
+
+Ctrl+Up/Down: Moves one line up or down 
+
+Ctrl+Page Up/Page Down: Moves one page up or down 
+
+> Ctrl+M: Enter “mark mode,” which helps for selecting text. 
+> Ctrl+F: Opens a Find dialog for searching the Command Prompt’s output.
+Ctrl+Z: Marks the end of a line.
+>Ctrl+Backspace: Delete the word to the left of the insertion point.
+
+tab: Autocomplete a folder name.
+Escape: Delete the current line of text.
+
+Launching Command Prompt 
+Win+X and then press C
+Win+X and then press A [admin]
+Alt+F4 [close prompt window]
+
+Identify Network Problems at CLI:
+- ping internetservertotest.com
+- tracert internetservertotest.com
+- ipconfig /all: Find IP address 
+- ipconfig /flushdns: Flush Your DNS Resolver Cache
+
+- netstat -an: List Network Connections and Ports
+- nslookup: Find the IP Address Associated With a Domain
+- nslookup [google.com or nslookup [google domain IP] 
+
+Startup Options:
+shutdown /s /t 0: Performs a regular shut down.
+shutdown /r /t 0: Restart the computer.
+shutdown /r /o: Restarts the computer into advanced options.
+
+Scan System Files for Problems:
+sfc /scannow
+
+connect to telnet servers without installing any third-party software:
+telnet
+
+Permanently Delete and Overwrite a Drive (C:\): 
+cipher /w:C:\
