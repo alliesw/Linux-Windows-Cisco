@@ -1,0 +1,170 @@
+how to generate RSA private & public key pairs using OpenSSL 
+
+(i) generate private:
+openssl genrsa -out private_key.pem 2048
+cat private_key.pem
+
+(ii) public
+openssl rsa -in private_key.pem -outform PEM -pubout -out public_key.pem
+cat public_key.pem
+-------------------------------------------------------------------------
+
+> create text file called "secret.txt"
+echo 'This is a secret message, for authorized parties only' > secret.txt
+------------------------------------------------------------
+. Encrypt and decrypt
+> encyrpt w/ public key: 
+openssl rsautl -encrypt -pubin -inkey public_key.pem -in secret.txt -out secret.enc
+nano ~/secret.enc
+>decrypt w/ private 
+openssl rsautl -decrypt -inkey private_key.pem -in secret.enc
+
+--------------------------------------
+. Verify using the key pair to sign and verify data
+>create a hash digest of the message 
+openssl dgst -sha256 -sign private_key.pem -out secret.txt.sha256 secret.txt
+openssl dgst -sha256 -verify public_key.pem -signature secret.txt.sha256 secret.txt 
+
+Hashing & Hash Verification
+----------------------------
+>Create a Text File
+echo 'This is some text in a file, just so we have some data' > file.txt
+
+>md5sum  
+md5sum file.txt > file.txt.md5
+cat file.txt.md5
+
+>md5 verify hash 
+md5sum -c file.txt.md5
+
+>md5sum failure: verify an invalid file
+cp file.txt badfile.txt
+md5sum badfile.txt > badfile.txt.md5
+cat badfile.txt.md5
+cat file.txt.md5
+
+> Modify using Nano text editor (add space to end via arrow) 
+nano badfile.txt
+ctrl+X 
+Y
+> verify hash of modified file 
+md5sum -c badfile.txt.md5
+
+>Recompute MD5 Sum 
+> inspect by generating new md5sum of edited file 
+md5sum badfile.txt > new.badfile.txt.md5
+cat new.badfile.txt.md5
+
+compute SHA1 Hash:
+shasum file.txt > file.txt.sha1
+inspect:
+cat file.txt.sha1
+verify: 
+shasum -c file.txt.sha1
+
+compute SHA256 Hash:
+shasum -a 256 file.txt > file.txt.sha256
+inspect: 
+cat file.txt.sha256
+verify:
+shasum -c file.txt.sha256
+
+tcpdump 
+
+sudo tcpdump -i eth0 
+Ctrl+C =stop 
+sudo tcpdump -i eth0 -vn
+
+>filtering to only capture DNS traffic 
+sudo tcpdump -i eth0 -vn host 8.8.8.8 and port 53 &
+jobs -l
+>note down job id of above process in the list 
+
+dig @8.8.8.8 A example.com
+fg % [job-id]
+
+saving captured packets 
+sudo tcpdump -i eth0 port 80 -w http.pcap &
+
+jobs -l
+curl example.com
+fg % [job-id]
+
+> read from file
+tcpdump -r http.pcap -nv
+
+security infrastructure design document 
+for a small retail organization - a widgets retailer, with 50 employees in one small office 
+that handles critical customer payment data 
+
+Needs:
+- An external website permitting users to browse and purchase widgets
+- An internal intranet website for employees to use
+- Secure remote access for engineering employees
+- Reasonable, basic firewall rules
+- Wireless coverage in the office
+- Reasonably secure configurations for laptops
+
+Authentication system
+(1) Kerberos-time-based Token-based MFA Authentication 
+(2) biometric-based password via facial recognition and fingerprints
+(3) MFA - users must present 2 or more forms of identification to login to an account
+(4) text-based passwords must contain more than 8 chars and must be updated every 6months
+
+External website security
+The external website must permit users to browse and purchase widgets
+(1) Website should use HTTPS protocol in combination with an SSL certificate 
+(2) Constantly update software, plugins, etc., to fix bugs/glitches 
+
+
+Internal website security
+internal intranet website for employees to use
+(1) Constantly update passwords   
+(2) Limit user access using least priviledge authorization 
+(3) Token-based MFA authentication   
+
+Remote access solution 
+Since the company must allow all of their engineering employees to remotely work, 
+a cybersecurity policy for those remote workers must be established, that provides guidelines
+for complying with security protocols at home or travel. 
+(1) All engineering employees will be provided with Company-owned Devices
+
+Firewall and basic rules recommendations
+(1) Configure network traffic filtering in firewall's inbound rules to block incoming requests from unknown sources
+(2) Configure an ACL 
+(3) Create a Unfified Threat Management (UTM) technology 
+by implementing a firewall with IPS integration   
+
+Wireless security
+(1) install antivirus and anti-malware
+(2) update software
+(3) Patch vulnerabilities 
+(4) Use Encryption (AES) to secure company data 
+
+VLAN configuration recommendations
+Remote workers will use a remote access SSL VPN client to connect to 
+the organization's VPN gateway - to gain access to it's internal network 
+
+Laptop security configuration
+(1) Configure firewall settings 
+(2) Install antivirus and anti-malware 
+(3) Configure auto password change every 6months 
+
+Application policy recommendations
+- block inappropriate applications
+- All Users - Run Normally for Approved Apps 
+- IT Admins - Elevate Rights/Trust - Approved Apps 
+- All Users - Restrict access to time of day  
+
+
+Security and privacy policy recommendations
+- Employee cybersecurity training and awareness 
+(1) Provide clearly documented procedures for responding to cyber threats
+	(a) Train employees to stop opening email attachments from unknown senders by conducting phishing exercises
+	(b) Train employees how to create strong passwords (>8 chars) 
+	(c) Train employees to reocongize and respond to various cybersecurity attacks
+
+Intrusion detection or prevention 
+The company will use an IPS to provide network security and threat prevention for their systems containing customer data.
+The IPS will analyze network traffic flows to both detect and prevent vulnerability exploits
+of customer data. 
