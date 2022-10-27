@@ -11,6 +11,9 @@ Update VLC
 $VLC_URL = 
 "https://download.videolan.org/vlc/last/win64/"
 
+(1.1.) update powershell w/ winget:  
+winget install --id Microsoft.Powershell --source winget
+
 (2) Finding and deleting files
 access the 'view' tab from file explorer -> options 
 -> change folder & search options -> select 'search tab' from menu 
