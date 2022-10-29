@@ -1,0 +1,47 @@
+Remove white box from windows display screen: 
+Press CNTRL+ALT+DEL and click the task manager tab. Highlight the running task and click end task
+
+BIOS details
+Get-CimInstance -ClassName Win32_BIOS
+
+Write-Host "The systems processor is"
+Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object -Property SystemType
+
+Write-Host "The computer Manufacture and physical memory details are as follows"
+Get-CimInstance -ClassName Win32_ComputerSystem
+
+delete files older than 30days 
+
+$csv = Import-Csv "C:\Vignesh\test.csv"
+foreach($row in $csv)
+{
+$Path=$row.Path
+write-host "The path to be archived is" $row.Path
+$DaysTOBeArchived = "-30"
+$CurrentDate = Get-Date
+$DatetoBeDeleted = $CurrentDate.AddDays($DaysTOBeArchived)
+Get-ChildItem $Path -Recurse  | Where-Object { $_.CreationTime  -lt $DatetoBeDeleted } | Remove-Item
+Write-Host "Cleared the files is the path "$row.path
+}
+
+send an automated mail when the disk space is less than 5%.
+$cname="Mycomputer"
+ForEach ($c in $cname)
+{
+$disk=Get-WmiObject win32_logicaldisk -ComputerName $c -Filter "Drivetype=3" -ErrorAction SilentlyContinue | Where-Object {($_.freespace/$_.size) -le '0.05'}
+If ($disk)
+{
+$EmailToAdd = "test@test.com"
+$EmailFromAdd = "test@test.com"
+$userdet = 'testuser'
+$passworddet = "testpwd"
+$Subjectdet = "Disk space alert"
+$Bodydet = "low space in the system"
+$SMTPServerdet = "testswer"
+$SMTPMessagedet = New-Object System.Net.Mail.MailMessage($EmailFromAdd,$EmailToAdd,$Subjectdet,$Bodydet)
+$SMTPClientdet = New-Object Net.Mail.SmtpClient($SMTPServerdet, 587)
+$ SMTPClientdet.EnableSsl = $true
+$ SMTPClientdet.Credentials = New-Object System.Net.NetworkCredential($userdet, $passworddet)
+$ SMTPClientdet.Send($SMTPMessagedet)
+}
+}
