@@ -1,0 +1,11 @@
+Key features of performance-based lab exam items:
+
+One of the key features of the new lab items is their simple, intuitive User Interface (UI) that splits the screen horizontally into two main panels. The left panel has three top tabs for easy navigation between the Tasks (instructions on the tasks at hand and requirements for each step), Guidelines (things candidates should not change), and the Topology (a network diagram for tasks). The right panel is a web-based terminal with tabs for each device the candidate needs to perform the required tasks.
+
+The UI’s design helps users maximize their focus by letting them interact with the terminals while always being able to consult the topology diagram, as shown in the following figure example.
+
+On the right are interactive terminals, where candidates provide their solutions, referring to the devices on the left in the topology diagram. Each tab (ASW1/ASW2 and DSW1/DSW2) relates directly to one of the devices in the diagram. In this instance, candidates can only interact with DSW1 and DSW2, which is explained in the Guidelines tab.
+
+The UI provides multiple navigation options. Users can navigate between terminal tabs using keyboard shortcuts and may manually reorder terminal tabs, but they cannot split the right panel to see two or more terminals at the same time. At any time, candidates may use the send-to-all feature that sends one or more command lines to all devices at once. From the left topology panel, users may click on the device icon to activate the corresponding terminal tab on the right panel. The topology diagram is interactive and supports zooming in and out as well as resetting the zoom to the original default size.
+
+Once candidates dive into the exam, they may encounter performance-based labs, multiple-choice items, and drag-and-drop items. Again, the important thing is to move forward and get as far as possible through the exam. Candidates can skip any item and move to the next item, but they cannot go back to a previous item.
