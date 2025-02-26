@@ -1,0 +1,132 @@
+1.0 Network fundamentals 
+
+1.1 Role/Function of components 
+1.1.1 Routers: 
+	Forwards packets between subnets 
+	1.1.2 L2 & L3 Switches: segment broadcast networks  
+		L2: moves packets within a VLAN; makes forwarding decisions based on 
+MAC address of a packet  
+If unknown MAC address received = flood packets to all ports except receiving port 
+	1.1.3 Next-gen firewalls & IPS:, packet-filtering, proxy service, stateful inspection
+	1.1.4 Access Points: provides Wi-Fi devices with a connection to a wired network  
+	1.1.5 Controllers (Cisco DNA Center & WLC)
+WLC: manages access points 
+Benefit of WLC:  eliminates the need to configure each access point individually. 
+	1.1.6 Endpoints 
+	1.1.7 Servers 
+	 handles requests from multiple workstations at the same time
+runs applications that send and retrieve data for workstations that make requests
+	1.1.8 PoE
+PoE monitoring and policing: If the power consumption on a monitored port exceeds the administrative maximum value, the following actions occur: 
+- A syslog message is issued. 
+- The monitored port is shut down and error-disabled. 
+- The allocated power is freed.
+1.2 Network Topology Architectures 
+1.2.1 two-tier 
+Collapsed core layer is used to enforce routing policies 
+1.2.2 three-tier  
+The distribution layer runs Layer 2 and Layer 3 technologies
+The network core: designed to maintain continuous connectivity when devices fail; provides uninterrupted forwarding service & ensures timely data transfer between layers 
+
+1.2.3 Spine-leaf 
+	provides high-bandwidth, low-latency, non blocking server-to-server connectivity. 
+Scalability: A leaf switch can be added with connections to every spine switch. 
+Each device is separated by the same number of hops.
+1.2.4 WAN 
+1.2.5 Small/home office (SOHO)
+	Broadband cable access preferred  
+On-premise & cloud 
+
+1.3 physical interface vs cabling types 
+	1.3.1 single-mode fiber, multimode fiber, copper 
+		Optical fiber - glass core component is encased in cladding
+		Light is transmitted via core of the fiber 
+Both copper & fiber interfaces provide minimal interruption by being hot-swappable when using SFP modules
+
+	1.3.2 Connections (ethernet shared media [broadcast] & point-to-point)
+
+1.4 identity interface & cable issues 
+	Collisions, errors, mismatch duplex, and/or speed
+	1.4.1 late collisions (after 64-bit frame) = cable length exceeded or too many repeaters in a network 
+	1.4.2 full-duplex/half-duplex mismatch,exceeded cable length limits, or defective hardware (incorrect cabling, bad NIC, non-compliant num of hubs) 
+Limit collisions: use: 1,6,11 2.4-GHz channel 
+
+1.5 TCP vs UDP 
+TCP: connection-oriented, sends packets in a stream, low transmission rate for higher 
+Reliability, 3-way handshake authentication;   
+	
+Udp: connectionless; sends packets individually, high transmission rate for apps, Doesn’t guarantee delivery, checksums for authentication, includes an 8-byte header   
+		Advantage (app traffic): lower overhead than TCP traffic, application can use checksums to verify the integrity of application data
+	
+1.6 Config & verify IPv4 Addressing & subnetting 
+
+1.7 Describe need for private IPv4 addressing 
+Less costly than public IP addresses. 
+Can be assigned to devices without Internet connections	
+Conserve IPv4 & global address space
+Reduce risk of a security breach 
+Allows multiple companies to each use the same addresses without conflicts
+Inter-enterprise comm 
+
+1.8 Config & verify IPv6 Addressing & prefix 
+When configuring IPv6 on an interface: join FF02::1 & FF02::2 multicasts
+
+1.9 Describe IPv6 address types
+	Unicast (global, unique local, link local)
+		Global: 
+		Unique-local: communication between subnets and cannot route 
+on the Internet; FC00::/7
+Link-local: communications within the local subnet; dynamically created 
+using prefix FE80::/10 & EUI-64 id (automatic address configuration, neighbor discovery, router discovery)
+	
+	Anycast
+	Multicast : FF00::/8
+	Modified EUI 64
+		When an EUI-64 address is gen: 7th bit of original MAC address is inverted
+
+1.10 Verify IP params for Client OS (windows, mac, linux)
+In windows, use GUI or command line: ‘ipconfig/all’
+	Troubleshooting: ping; tracert; nslookup; netstat-r  
+MAC/linux: ‘ifconfig’   
+Verify the host has the correct IP in the same subnet with its default gateway or router. 
+each host must have individual IP & subnet mask
+Verify def-gateway/router info: host must know the def gateway ip (in same subnet)
+Verify DNS info: host must know the DNS info of 1 or more servers
+
+Default gateway 
+Host ip address
+NIC MAC address
+NIC vendor OUI
+Subnet mask 
+
+
+1.11 Wireless Principles 
+	Non-overlapping Wi-Fi channels 
+	SSID: w 
+	RF
+Encryption: 
+Symmetric-performance: AES, 3DES, RC4, E0 
+Compute public key from private key & vise versa  
+Use cases: banking (PII), data storage  
+asymmetric-key cryptography: RSA; DSA, DH 
+	Use cases: digital signatures, blockchain & PKI
+	WPA: TKIP - RC4, 
+WPA2: AES-256 - preshared mode  
+WPA3 -  -SAE-AES-CCMP
+
+1.12 Virtualization Fundamentals 
+The hypervisor can virtualize physical components including CPU, memory, and storage.
+	Server virtualization 
+	Containers 
+	VRFs
+
+1.13 Switching concepts
+	MAC learning & aging
+Frame switching
+Frame flooding  
+Frames are sent to every port on the switch in the same VLAN except from the originating port.
+	MAC address table
+
+Network Access
+
+After enabling DAI, all ports become untrusted ports.
